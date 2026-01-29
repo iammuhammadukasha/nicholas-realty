@@ -12,6 +12,8 @@ export default function HomePage() {
     email: '',
     estateType: 'Probate Sale',
   });
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formMessage, setFormMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const testimonials = [
     {
@@ -34,12 +36,28 @@ export default function HomePage() {
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(
-      `Thank you ${formData.name}! We'll contact you at ${formData.email} soon.`,
-    );
-    setFormData({ name: '', email: '', estateType: 'Probate Sale' });
+    setFormMessage(null);
+    setFormSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setFormMessage({ type: 'error', text: data.error || 'Something went wrong.' });
+        return;
+      }
+      setFormMessage({ type: 'success', text: data.message || 'Thank you! We will contact you soon.' });
+      setFormData({ name: '', email: '', estateType: 'Probate Sale' });
+    } catch {
+      setFormMessage({ type: 'error', text: 'Something went wrong. Please try again.' });
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   const nextTestimonial = () => {
@@ -575,6 +593,11 @@ export default function HomePage() {
             </div>
             <div className="contact-form-wrapper">
               <form onSubmit={handleSubmit} className="contact-form">
+                {formMessage && (
+                  <div className={`form-message form-message--${formMessage.type}`}>
+                    {formMessage.text}
+                  </div>
+                )}
                 <div className="form-group">
                   <label>FULL NAME</label>
                   <input
@@ -607,12 +630,14 @@ export default function HomePage() {
                     <option>General Listing</option>
                   </select>
                 </div>
-                <button type="submit" className="btn-consultation">
-                  Book My Consultation
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
+                <button type="submit" className="btn-consultation" disabled={formSubmitting}>
+                  {formSubmitting ? 'Sending…' : 'Book My Consultation'}
+                  {!formSubmitting && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  )}
                 </button>
               </form>
             </div>

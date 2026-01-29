@@ -21,6 +21,7 @@ pnpm-debug.log*
 
 # Local
 *.local
+.env*.local
 
 # Editor
 .vscode/*
