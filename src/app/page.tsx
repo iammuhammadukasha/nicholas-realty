@@ -54,10 +54,13 @@ export default function HomePage() {
     let rafId: number;
     const handleScroll = () => {
       rafId = requestAnimationFrame(() => {
-        setParallaxOffset(window.scrollY);
+        const y = window.scrollY;
+        setParallaxOffset(y);
+        setNavScrolled(y > 30);
       });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(rafId);
