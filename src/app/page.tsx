@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 export default function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [heroHovered, setHeroHovered] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -96,14 +97,27 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero Section - Parallax */}
-      <section id="home" className="hero">
+      {/* Hero Section - Parallax + Image */}
+      <section
+        id="home"
+        className="hero"
+        onMouseEnter={() => setHeroHovered(true)}
+        onMouseLeave={() => setHeroHovered(false)}
+      >
+        <div
+          className="hero-image"
+          style={{
+            transform: `translateY(${parallaxOffset * 0.25}px) scale(${heroHovered ? 1.08 : 1})`,
+          }}
+          aria-hidden
+        />
         <div
           className="hero-parallax-deep"
           style={{ transform: `translateY(${parallaxOffset * 0.15}px)` }}
           aria-hidden
         />
         <div className="hero-background" aria-hidden />
+        <div className="hero-overlay" aria-hidden />
         <div className="container">
           <div
             className="hero-content"
