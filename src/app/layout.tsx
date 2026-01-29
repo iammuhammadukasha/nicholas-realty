@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import '../index.css';
 import '../App.css';
 
@@ -15,7 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script
+          src="https://code.tidio.co/dntt3ypzxjixj8h834iue6yybp2ofqtc.js"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }
