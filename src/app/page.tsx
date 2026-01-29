@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -47,6 +48,20 @@ export default function HomePage() {
     setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  useEffect(() => {
+    let rafId: number;
+    const handleScroll = () => {
+      rafId = requestAnimationFrame(() => {
+        setParallaxOffset(window.scrollY);
+      });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <div className="landing-page">
       {/* Navigation */}
@@ -81,10 +96,19 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - Parallax */}
       <section id="home" className="hero">
+        <div
+          className="hero-parallax-deep"
+          style={{ transform: `translateY(${parallaxOffset * 0.15}px)` }}
+          aria-hidden
+        />
+        <div className="hero-background" aria-hidden />
         <div className="container">
-          <div className="hero-content">
+          <div
+            className="hero-content"
+            style={{ transform: `translateY(${parallaxOffset * 0.08}px)` }}
+          >
             <div className="hero-badge">
               <span className="badge-dot"></span>
               LEGACY PROTECTION EXPERTS
@@ -125,7 +149,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="hero-background"></div>
       </section>
 
       {/* About Us Section */}
