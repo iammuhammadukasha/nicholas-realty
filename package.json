@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "copy-hero": "node -e \"try { require('fs').copyFileSync('public/NIcholas-Realty-scaled-1.webp', 'public/hero-bg.webp'); } catch (e) {}\"",
+    "dev": "npm run copy-hero && next dev",
+    "build": "npm run copy-hero && next build",
     "start": "next start"
   },
   "dependencies": {
