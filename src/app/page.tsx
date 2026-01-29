@@ -14,6 +14,7 @@ export default function HomePage() {
   });
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formMessage, setFormMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const testimonials = [
     {
@@ -85,13 +86,26 @@ export default function HomePage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   return (
     <div className="landing-page">
       {/* Navigation */}
-      <nav className={`navbar${navScrolled ? ' navbar--scrolled' : ''}`}>
+      <nav className={`navbar${navScrolled ? ' navbar--scrolled' : ''}${mobileMenuOpen ? ' nav-mobile-open' : ''}`}>
         <div className="container">
           <div className="nav-content">
-            <a href="#home" className="logo">
+            <a href="#home" className="logo" onClick={closeMobileMenu}>
               <img
                 src="/NICHOLAS-REALTY-Loggo-copy-e1756205083214.webp"
                 alt="Nicholas Realty"
@@ -104,12 +118,37 @@ export default function HomePage() {
               <a href="#expertise">Expertise</a>
               <a href="#testimonials">Testimonials</a>
               <a href="#cleanout">Clean-Out</a>
-              <a href="#advisor">AI Advisor</a>
               <button className="nav-cta" type="button">
                 Schedule Call
               </button>
             </div>
+            <button
+              type="button"
+              className="nav-toggle"
+              onClick={() => setMobileMenuOpen((o) => !o)}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
+            >
+              <span className="nav-toggle-bar" />
+              <span className="nav-toggle-bar" />
+              <span className="nav-toggle-bar" />
+            </button>
           </div>
+        </div>
+        <div
+          className="nav-mobile-overlay"
+          onClick={closeMobileMenu}
+          aria-hidden="true"
+        />
+        <div className="nav-mobile-drawer">
+          <a href="#home" onClick={closeMobileMenu}>Home</a>
+          <a href="#about" onClick={closeMobileMenu}>About Us</a>
+          <a href="#expertise" onClick={closeMobileMenu}>Expertise</a>
+          <a href="#testimonials" onClick={closeMobileMenu}>Testimonials</a>
+          <a href="#cleanout" onClick={closeMobileMenu}>Clean-Out</a>
+          <button className="nav-cta nav-cta-mobile" type="button" onClick={closeMobileMenu}>
+            Schedule Call
+          </button>
         </div>
       </nav>
 
@@ -721,13 +760,6 @@ export default function HomePage() {
               <a href="#expertise">Trust Asset Liquidation</a>
               <a href="#expertise">Conservatorship Sales</a>
               <a href="#cleanout">Estate Clean-Outs</a>
-            </div>
-            <div className="footer-section">
-              <h4 className="footer-heading">Advisor Access</h4>
-              <p className="footer-advisor-text">Talk to our AI specialist about your probate questions.</p>
-              <button className="btn-advisor" type="button">
-                Consult AI Advisor
-              </button>
             </div>
           </div>
         </div>
