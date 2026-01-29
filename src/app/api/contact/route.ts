@@ -46,14 +46,17 @@ export async function POST(request: NextRequest) {
       submitted_at: new Date().toISOString(),
     };
 
-    const { error } = await getSupabaseAdmin()
+    const supabase = getSupabaseAdmin();
+    const { error } = await supabase
       .from('contact_submissions')
       .insert(submission);
 
     if (error) {
       console.error('Supabase insert error:', error);
       return NextResponse.json(
-        { error: 'Failed to save submission. Please try again.' },
+        {
+          error: error.message || 'Failed to save submission. Please try again.',
+        },
         { status: 500 }
       );
     }
@@ -62,9 +65,11 @@ export async function POST(request: NextRequest) {
       { success: true, message: 'Thank you! We will contact you soon.' },
       { status: 200 }
     );
-  } catch {
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+    console.error('Contact API error:', err);
     return NextResponse.json(
-      { error: 'Something went wrong. Please try again.' },
+      { error: message },
       { status: 500 }
     );
   }

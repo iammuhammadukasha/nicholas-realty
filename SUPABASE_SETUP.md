@@ -43,3 +43,22 @@ npm install
 ## 5. View submissions
 
 In Supabase: **Table Editor** → **contact_submissions**. New rows appear when someone submits the contact form.
+
+---
+
+## Troubleshooting: "No form submitted" or errors
+
+**1. You see an error message on the form after submitting**  
+The API now returns the real error. Common ones:
+
+- **"relation \"contact_submissions\" does not exist"** → Run the SQL in **supabase-contact-table.sql** in Supabase **SQL Editor** (step 1 above).
+- **"new row violates row-level security policy"** → Run the SQL again; it now includes a policy that allows inserts. Or in Supabase: **Table Editor** → **contact_submissions** → **Policies** → add a policy: **INSERT** with check `true`.
+- **"Missing Supabase env..."** → Add `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to `.env.local` (local) or Vercel **Environment Variables** (production). Use the **service_role** key from Supabase **Project Settings** → **API**, not the anon key.
+
+**2. Form shows success but no row in Supabase**  
+- Confirm you’re looking at **Table Editor** → **contact_submissions** in the same project whose URL/key you used.
+- On Vercel: redeploy after adding or changing env vars (they only apply to new deployments).
+
+**3. Local vs production**  
+- Local: `.env.local` must have the two variables; restart `npm run dev` after changing them.
+- Production: set the same two variables in Vercel and redeploy.
