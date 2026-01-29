@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 import { getSupabaseAdmin } from '../../../lib/supabase-server';
 
 const VALID_ESTATE_TYPES = [
@@ -7,6 +8,36 @@ const VALID_ESTATE_TYPES = [
   'Conservatorship',
   'General Listing',
 ];
+
+function sendNotificationEmail(params: {
+  name: string;
+  email: string;
+  estateType: string;
+  submittedAt: string;
+}) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.CONTACT_NOTIFY_EMAIL;
+  if (!apiKey || !to) return Promise.resolve();
+
+  const from = process.env.RESEND_FROM || 'Nicholas Realty <onboarding@resend.dev>';
+  const resend = new Resend(apiKey);
+
+  return resend.emails.send({
+    from,
+    to: [to],
+    subject: `New contact: ${params.name} – ${params.estateType}`,
+    html: `
+      <p><strong>New contact form submission</strong></p>
+      <ul>
+        <li><strong>Name:</strong> ${params.name}</li>
+        <li><strong>Email:</strong> ${params.email}</li>
+        <li><strong>Estate type:</strong> ${params.estateType}</li>
+        <li><strong>Submitted:</strong> ${params.submittedAt}</li>
+      </ul>
+      <p>Reply to: <a href="mailto:${params.email}">${params.email}</a></p>
+    `,
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -59,6 +90,19 @@ export async function POST(request: NextRequest) {
         },
         { status: 500 }
       );
+    }
+
+    // Optional: send notification to your Gmail/email (set RESEND_API_KEY + CONTACT_NOTIFY_EMAIL)
+    try {
+      await sendNotificationEmail({
+        name: submission.name,
+        email: submission.email,
+        estateType: submission.estate_type,
+        submittedAt: submission.submitted_at,
+      });
+    } catch (emailErr) {
+      console.error('Notification email error:', emailErr);
+      // Don't fail the request; submission is already saved
     }
 
     return NextResponse.json(
