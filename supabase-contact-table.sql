@@ -9,12 +9,15 @@ create table if not exists public.contact_submissions (
   submitted_at timestamptz not null default now()
 );
 
--- Optional: enable Row Level Security (RLS) and allow service role to do everything
--- (API uses SUPABASE_SERVICE_ROLE_KEY which bypasses RLS)
+-- Enable Row Level Security (RLS)
 alter table public.contact_submissions enable row level security;
 
--- Policy: allow service role full access (handled by service key)
--- No extra policy needed when using service_role key from API.
+-- Policy: allow inserts from API (anon or service_role key)
+-- Without this, inserts fail if using anon key; service_role bypasses RLS.
+create policy "Allow insert contact submissions"
+  on public.contact_submissions
+  for insert
+  with check (true);
 
 -- Optional: add index for listing by date
 create index if not exists contact_submissions_submitted_at_idx
