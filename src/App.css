@@ -1859,7 +1859,7 @@
 .footer-social {
   display: flex;
   gap: 1rem;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -1881,6 +1881,8 @@
   position: relative;
   flex-shrink: 0;
   box-sizing: border-box;
+  text-align: center;
+  line-height: 0;
 }
 
 .social-icon svg {
@@ -1892,8 +1894,9 @@
   max-height: 20px;
   display: block;
   flex-shrink: 0;
-  margin: auto;
+  margin: 0;
   object-fit: contain;
+  vertical-align: middle;
 }
 
 .social-icon:hover {
@@ -2160,12 +2163,11 @@
   }
 
   .contact-item {
-    align-items: center;
+    align-items: flex-start;
   }
 
   .contact-value {
     word-break: break-word;
-    text-align: center;
   }
 
   .contact-icon {
@@ -2189,7 +2191,7 @@
     min-height: 22px;
     max-width: 22px;
     max-height: 22px;
-    margin: auto;
+    margin: 0;
   }
 
   .expertise-icon,
@@ -2267,24 +2269,24 @@
   .footer-content {
     grid-template-columns: 1fr;
     gap: 2rem;
-    text-align: center;
+    text-align: left;
   }
 
   .footer-social {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .footer-logo {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .footer-section a,
   .footer-contact-item {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .footer-contact-item {
-    text-align: center;
+    text-align: left;
   }
 
   .footer-logo-icon {
