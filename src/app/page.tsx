@@ -110,7 +110,14 @@ export default function HomePage() {
             transform: `translateY(${parallaxOffset * 0.25}px) scale(${heroHovered ? 1.08 : 1})`,
           }}
           aria-hidden
-        />
+        >
+          <img
+            src="/NIcholas-Realty-scaled-1.webp"
+            alt=""
+            className="hero-image-img"
+            fetchPriority="high"
+          />
+        </div>
         <div
           className="hero-parallax-deep"
           style={{ transform: `translateY(${parallaxOffset * 0.15}px)` }}
