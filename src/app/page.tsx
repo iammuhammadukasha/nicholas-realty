@@ -69,19 +69,13 @@ export default function HomePage() {
       <nav className="navbar">
         <div className="container">
           <div className="nav-content">
-            <div className="logo">
-              <div className="logo-icon">
-                <img
-                  src="/NR_LOGO-e1756206232230.png"
-                  alt="Nicholas Realty"
-                  className="brand-logo"
-                />
-              </div>
-              <div className="logo-text">
-                <span className="logo-text-dark">NICHOLAS</span>
-                <span className="logo-text-blue"> REALTY</span>
-              </div>
-            </div>
+            <a href="#home" className="logo">
+              <img
+                src="/NICHOLAS-REALTY-Loggo-copy-e1756205083214.webp"
+                alt="Nicholas Realty"
+                className="nav-logo-img"
+              />
+            </a>
             <div className="nav-links">
               <a href="#home">Home</a>
               <a href="#about">About Us</a>
