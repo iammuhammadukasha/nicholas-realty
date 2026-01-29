@@ -6,6 +6,7 @@ export default function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [heroHovered, setHeroHovered] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -66,7 +67,7 @@ export default function HomePage() {
   return (
     <div className="landing-page">
       {/* Navigation */}
-      <nav className="navbar">
+      <nav className={`navbar${navScrolled ? ' navbar--scrolled' : ''}`}>
         <div className="container">
           <div className="nav-content">
             <a href="#home" className="logo">
