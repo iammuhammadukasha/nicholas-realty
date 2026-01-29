@@ -112,7 +112,7 @@ export default function HomePage() {
           aria-hidden
         >
           <img
-            src="/NIcholas-Realty-scaled-1.webp"
+            src="/hero-bg.webp"
             alt=""
             className="hero-image-img"
             fetchPriority="high"
