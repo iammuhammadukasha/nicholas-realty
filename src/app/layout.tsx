@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: 'Nicholas Realty | Specialized Probate & Trust Brokerage',
   description:
     'Providing specialized guidance for Probate & Trust real estate transactions.',
+  icons: {
+    icon: '/NICHOLAS-REALTY-Loggo-copy-e1756205083214.webp',
+    apple: '/NICHOLAS-REALTY-Loggo-copy-e1756205083214.webp',
+  },
 };
 
 export default function RootLayout({
