@@ -146,6 +146,9 @@
 }
 
 .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.2);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -157,6 +160,7 @@
   font-size: 0.9rem;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
 }
 
 .nav-cta::before {
@@ -168,6 +172,7 @@
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: left 0.5s ease;
+  pointer-events: none;
 }
 
 .nav-cta:hover::before {
