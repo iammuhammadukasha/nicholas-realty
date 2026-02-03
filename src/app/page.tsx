@@ -1,11 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import HeroSaaS from './components/HeroSaaS';
+
+// Links – update these with your real URLs
+const LINKS = {
+  scheduleCall: '#contact',
+  exploreStrategy: '#expertise',
+  cleanoutCta: '#contact',
+  social: {
+    twitter: 'https://twitter.com/NicholasRealty',
+    instagram: 'https://instagram.com/nicholasrealty',
+    linkedin: 'https://linkedin.com/company/nicholas-realty',
+    email: 'mailto:nick@nrprobate.com',
+  },
+} as const;
 
 export default function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
-  const [heroHovered, setHeroHovered] = useState(false);
   const [navScrolled, setNavScrolled] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -146,86 +159,14 @@ export default function HomePage() {
           <a href="#expertise" onClick={closeMobileMenu}>Expertise</a>
           <a href="#testimonials" onClick={closeMobileMenu}>Testimonials</a>
           <a href="#cleanout" onClick={closeMobileMenu}>Clean-Out</a>
-          <button className="nav-cta nav-cta-mobile" type="button" onClick={closeMobileMenu}>
+          <a href={LINKS.scheduleCall} className="nav-cta nav-cta-mobile" onClick={closeMobileMenu}>
             Schedule Call
-          </button>
+          </a>
         </div>
       </nav>
 
-      {/* Hero Section - Parallax + Image */}
-      <section
-        id="home"
-        className="hero"
-        onMouseEnter={() => setHeroHovered(true)}
-        onMouseLeave={() => setHeroHovered(false)}
-      >
-        <div
-          className="hero-image"
-          style={{
-            transform: `translateY(${parallaxOffset * 0.25}px) scale(${heroHovered ? 1.08 : 1})`,
-          }}
-          aria-hidden
-        >
-          <img
-            src="/hero-bg.webp"
-            alt=""
-            className="hero-image-img"
-            fetchPriority="high"
-          />
-        </div>
-        <div
-          className="hero-parallax-deep"
-          style={{ transform: `translateY(${parallaxOffset * 0.15}px)` }}
-          aria-hidden
-        />
-        <div className="hero-background" aria-hidden />
-        <div className="hero-overlay" aria-hidden />
-        <div className="container">
-          <div
-            className="hero-content"
-            style={{ transform: `translateY(${parallaxOffset * 0.08}px)` }}
-          >
-            <div className="hero-badge">
-              <span className="badge-dot"></span>
-              LEGACY PROTECTION EXPERTS
-            </div>
-            <h1 className="hero-title">
-              <span className="hero-title-black">Nicholas</span>
-              <span className="hero-title-blue">Realty.</span>
-            </h1>
-            <p className="hero-subtitle">
-              Providing specialized guidance for <strong>Probate & Trust</strong> real estate
-              transactions.
-            </p>
-            <div className="hero-cta">
-              <button className="btn-primary" type="button">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                Consult an Expert
-              </button>
-              <button className="btn-secondary" type="button">
-                View Case Studies
-              </button>
-            </div>
-            <div className="scroll-indicator">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section - SaaS-style (HR software) */}
+      <HeroSaaS />
 
       {/* About Us Section */}
       <section id="about" className="about-section">
@@ -571,12 +512,12 @@ export default function HomePage() {
                 <p>Reliable scheduling to meet critical legal deadlines.</p>
               </div>
             </div>
-            <button className="btn-cleanout" type="button">
+            <a href={LINKS.cleanoutCta} className="btn-cleanout">
               Book a Professional Clean-Out
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -704,26 +645,26 @@ export default function HomePage() {
                 sensitive, and effective real estate solutions for complex estates.
               </p>
               <div className="footer-social">
-                <a href="#" className="social-icon">
+                <a href={LINKS.social.twitter} className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                   <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
                   </svg>
                 </a>
-                <a href="#" className="social-icon">
+                <a href={LINKS.social.instagram} className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                   <svg viewBox="0 0 24 24" fill="currentColor">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                   </svg>
                 </a>
-                <a href="#" className="social-icon">
+                <a href={LINKS.social.linkedin} className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect x="2" y="9" width="4" height="12"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
                   </svg>
                 </a>
-                <a href="#" className="social-icon">
+                <a href={LINKS.social.email} className="social-icon" aria-label="Email">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
