@@ -135,13 +135,6 @@ export default function HomePage() {
               <a href="#expertise">Expertise</a>
               <a href="#testimonials">Testimonials</a>
               <a href="#cleanout">Clean-Out</a>
-              <button
-                type="button"
-                className="nav-cta"
-                onClick={() => { window.location.href = LINKS.phone; }}
-              >
-                Schedule Call · 866 917 4001
-              </button>
             </div>
             <button
               type="button"
@@ -167,13 +160,6 @@ export default function HomePage() {
           <a href="#expertise" onClick={closeMobileMenu}>Expertise</a>
           <a href="#testimonials" onClick={closeMobileMenu}>Testimonials</a>
           <a href="#cleanout" onClick={closeMobileMenu}>Clean-Out</a>
-          <button
-            type="button"
-            className="nav-cta nav-cta-mobile"
-            onClick={() => { closeMobileMenu(); window.location.href = LINKS.phone; }}
-          >
-            Schedule Call · 866 917 4001
-          </button>
         </div>
       </nav>
 
@@ -239,8 +225,8 @@ export default function HomePage() {
                 </svg>
                 Consult an Expert
               </a>
-              <a href={LINKS.exploreStrategy} className="btn-secondary">
-                View Case Studies
+              <a href={LINKS.scheduleCall} className="btn-secondary">
+                Schedule a Call
               </a>
             </div>
             <div className="scroll-indicator">
