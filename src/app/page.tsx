@@ -225,7 +225,7 @@ export default function HomePage() {
                 </svg>
                 Consult an Expert
               </a>
-              <a href={LINKS.scheduleCall} className="btn-secondary">
+              <a href={LINKS.phone} className="btn-secondary">
                 Schedule a Call
               </a>
             </div>
