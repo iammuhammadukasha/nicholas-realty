@@ -135,9 +135,9 @@ export default function HomePage() {
               <a href="#expertise">Expertise</a>
               <a href="#testimonials">Testimonials</a>
               <a href="#cleanout">Clean-Out</a>
-              <button className="nav-cta" type="button">
-                Schedule Call
-              </button>
+              <a href={LINKS.phone} className="nav-cta">
+                Schedule Call · 866 917 4001
+              </a>
             </div>
             <button
               type="button"
@@ -163,8 +163,8 @@ export default function HomePage() {
           <a href="#expertise" onClick={closeMobileMenu}>Expertise</a>
           <a href="#testimonials" onClick={closeMobileMenu}>Testimonials</a>
           <a href="#cleanout" onClick={closeMobileMenu}>Clean-Out</a>
-          <a href={LINKS.scheduleCall} className="nav-cta nav-cta-mobile" onClick={closeMobileMenu}>
-            Schedule Call
+          <a href={LINKS.phone} className="nav-cta nav-cta-mobile" onClick={closeMobileMenu}>
+            Schedule Call · 866 917 4001
           </a>
         </div>
       </nav>
