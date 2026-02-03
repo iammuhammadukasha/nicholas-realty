@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import HeroSaaS from './components/HeroSaaS';
 
 // Links – Nicholas Realty
 const LINKS = {
@@ -23,6 +22,7 @@ const LINKS = {
 export default function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [heroHovered, setHeroHovered] = useState(false);
   const [navScrolled, setNavScrolled] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -169,8 +169,80 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero Section - SaaS-style (HR software) */}
-      <HeroSaaS />
+      {/* Hero Section - Nicholas Realty */}
+      <section
+        id="home"
+        className="hero"
+        onMouseEnter={() => setHeroHovered(true)}
+        onMouseLeave={() => setHeroHovered(false)}
+      >
+        <div
+          className="hero-image"
+          style={{
+            transform: `translateY(${parallaxOffset * 0.25}px) scale(${heroHovered ? 1.08 : 1})`,
+          }}
+          aria-hidden
+        >
+          <img
+            src="/hero-bg.webp"
+            alt=""
+            className="hero-image-img"
+            fetchPriority="high"
+          />
+        </div>
+        <div
+          className="hero-parallax-deep"
+          style={{ transform: `translateY(${parallaxOffset * 0.15}px)` }}
+          aria-hidden
+        />
+        <div className="hero-background" aria-hidden />
+        <div className="hero-overlay" aria-hidden />
+        <div className="container">
+          <div
+            className="hero-content"
+            style={{ transform: `translateY(${parallaxOffset * 0.08}px)` }}
+          >
+            <div className="hero-badge">
+              <span className="badge-dot"></span>
+              LEGACY PROTECTION EXPERTS
+            </div>
+            <h1 className="hero-title">
+              <span className="hero-title-black">Nicholas</span>
+              <span className="hero-title-blue">Realty.</span>
+            </h1>
+            <p className="hero-subtitle">
+              Providing specialized guidance for <strong>Probate & Trust</strong> real estate
+              transactions.
+            </p>
+            <div className="hero-cta">
+              <a href={LINKS.scheduleCall} className="btn-primary">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Consult an Expert
+              </a>
+              <a href={LINKS.exploreStrategy} className="btn-secondary">
+                View Case Studies
+              </a>
+            </div>
+            <div className="scroll-indicator">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* About Us Section */}
       <section id="about" className="about-section">
