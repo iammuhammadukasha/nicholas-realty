@@ -239,8 +239,8 @@ export default function HomePage() {
                 </svg>
                 Consult an Expert
               </a>
-              <a href={LINKS.exploreStrategy} className="btn-secondary">
-                View Case Studies
+              <a href={LINKS.phone} className="btn-secondary">
+                Schedule a Call
               </a>
             </div>
             <div className="scroll-indicator">
