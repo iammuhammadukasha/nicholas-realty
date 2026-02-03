@@ -3,15 +3,16 @@
 import { useState, useEffect } from 'react';
 import HeroSaaS from './components/HeroSaaS';
 
-// Links – update these with your real URLs
+// Links – Nicholas Realty
 const LINKS = {
   scheduleCall: '#contact',
   exploreStrategy: '#expertise',
   cleanoutCta: '#contact',
   social: {
-    twitter: 'https://twitter.com/NicholasRealty',
-    instagram: 'https://instagram.com/nicholasrealty',
-    linkedin: 'https://linkedin.com/company/nicholas-realty',
+    x: 'https://x.com/nrprobate',
+    instagram: 'https://www.instagram.com/nicholasrealty/',
+    linkedin: 'https://www.linkedin.com/in/nicholas-realty-probate-specialist',
+    facebook: 'https://www.facebook.com/nrprobate/',
     email: 'mailto:nick@nrprobate.com',
   },
 } as const;
@@ -645,9 +646,9 @@ export default function HomePage() {
                 sensitive, and effective real estate solutions for complex estates.
               </p>
               <div className="footer-social">
-                <a href={LINKS.social.twitter} className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <a href={LINKS.social.x} className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
                   <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
                 <a href={LINKS.social.instagram} className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -662,6 +663,11 @@ export default function HomePage() {
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect x="2" y="9" width="4" height="12"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+                <a href={LINKS.social.facebook} className="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                 </a>
                 <a href={LINKS.social.email} className="social-icon" aria-label="Email">
