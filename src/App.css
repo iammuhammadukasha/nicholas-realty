@@ -1566,6 +1566,86 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* Before & After Section */
+.before-after-section {
+  padding: 5rem 0 6rem;
+  background: linear-gradient(180deg, #f5f7fc 0%, #eef1f8 100%);
+  position: relative;
+}
+
+.before-after-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+}
+
+.before-after-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0.75rem 0 1rem;
+  color: #000000;
+}
+
+.before-after-lead {
+  font-size: 1.05rem;
+  color: #333333;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.before-after-carousel {
+  margin-bottom: 1.5rem;
+}
+
+.before-after-carousel__slide {
+  flex: 1;
+  min-width: 0;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.before-after-figure {
+  margin: 0;
+  padding: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+}
+
+.before-after-full-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.before-after-carousel__dots {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .before-after-carousel {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .before-after-carousel__slide {
+    order: 1;
+    flex-basis: 100%;
+    max-width: none;
+  }
+
+  .before-after-carousel .carousel-arrow-left {
+    order: 2;
+  }
+
+  .before-after-carousel .carousel-arrow-right {
+    order: 3;
+  }
+}
+
 /* Contact Section */
 .contact-section {
   padding: 6rem 0;
