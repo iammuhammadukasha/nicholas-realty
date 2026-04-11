@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { BeforeAfterSection } from '../components/BeforeAfterSection';
 
 // Links – Nicholas Realty
 const LINKS = {
@@ -135,6 +136,14 @@ export default function HomePage() {
               <a href="#expertise">Expertise</a>
               <a href="#testimonials">Testimonials</a>
               <a href="#cleanout">Clean-Out</a>
+              <a href="#before-after">Before &amp; After</a>
+              <button
+                type="button"
+                className="nav-cta"
+                onClick={() => { window.location.href = LINKS.phone; }}
+              >
+                Schedule Call · 866 917 4001
+              </button>
             </div>
             <button
               type="button"
@@ -160,6 +169,14 @@ export default function HomePage() {
           <a href="#expertise" onClick={closeMobileMenu}>Expertise</a>
           <a href="#testimonials" onClick={closeMobileMenu}>Testimonials</a>
           <a href="#cleanout" onClick={closeMobileMenu}>Clean-Out</a>
+          <a href="#before-after" onClick={closeMobileMenu}>Before &amp; After</a>
+          <button
+            type="button"
+            className="nav-cta nav-cta-mobile"
+            onClick={() => { closeMobileMenu(); window.location.href = LINKS.phone; }}
+          >
+            Schedule Call · 866 917 4001
+          </button>
         </div>
       </nav>
 
@@ -592,6 +609,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <BeforeAfterSection />
+
       {/* Contact Section */}
       <section id="contact" className="contact-section">
         <div className="container">
@@ -782,6 +801,7 @@ export default function HomePage() {
               <a href="#expertise">Trust Asset Liquidation</a>
               <a href="#expertise">Conservatorship Sales</a>
               <a href="#cleanout">Estate Clean-Outs</a>
+              <a href="#before-after">Before &amp; After</a>
             </div>
           </div>
         </div>
